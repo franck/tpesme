@@ -1,0 +1,3 @@
+public/wp-content/uploads
+public/wp-content/uploads/**/*
+*DS_Store
