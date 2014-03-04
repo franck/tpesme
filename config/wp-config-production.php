@@ -32,7 +32,7 @@ define('DB_USER', 'tpesme');
 define('DB_PASSWORD', 'wEbmjWvB ');
 
 /** Adresse de l'hébergement MySQL. */
-define('DB_HOST', 'sql.safetymotoride.fr');
+define('DB_HOST', 'mysql.safetymotoride.fr');
 
 /** Jeu de caractères à utiliser par la base de données lors de la création des tables. */
 define('DB_CHARSET', 'utf8');
