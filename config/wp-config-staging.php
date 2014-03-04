@@ -18,22 +18,21 @@
  */
 
 define('WP_CACHE', true); //Added by WP-Cache Manager
-define('WP_HOME','http://stage.lotusdor.net');
-define('WP_SITEURL','http://stage.lotusdor.net');
+define('WP_HOME','http://stage.safetymotoride.fr');
+define('WP_SITEURL','http://stage.safetymotoride.fr');
 
 // ** Réglages MySQL - Votre hébergeur doit vous fournir ces informations. ** //
 /** Le nom de la base de données de WordPress. */
-define('DB_NAME', 'lotusdornetstage');
+define('DB_NAME', 'safetymotoridestage');
 
 /** Utilisateur de la base de données MySQL. */
-define('DB_USER', 'lotusdor');
+define('DB_USER', 'tpesme');
 
 /** Mot de passe de la base de données MySQL. */
-define('DB_PASSWORD', 'thibamay');
+define('DB_PASSWORD', 'wEbmjWvB ');
 
 /** Adresse de l'hébergement MySQL. */
-define('DB_HOST', 'sql.barouf.info');
-
+define('DB_HOST', 'sql.safetymotoride.fr');
 /** Jeu de caractères à utiliser par la base de données lors de la création des tables. */
 define('DB_CHARSET', 'utf8');
 
