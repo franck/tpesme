@@ -29,7 +29,7 @@ define('DB_NAME', 'safetymotoridestage');
 define('DB_USER', 'tpesme');
 
 /** Mot de passe de la base de données MySQL. */
-define('DB_PASSWORD', 'wEbmjWvB ');
+define('DB_PASSWORD', 'wEbmjWvB');
 
 /** Adresse de l'hébergement MySQL. */
 define('DB_HOST', 'mysql.safetymotoride.fr');
