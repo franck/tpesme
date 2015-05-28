@@ -1,89 +1,36 @@
-# multi-staging
-# command : cap staging deploy
-set :stages, %w(staging production)
-set :default_stage, "production"
-#require 'capistrano/ext/multistage'
-
+# capistrano deploy
 set :application, "tpesme"
-set :deploy_in, "/home/tpesme/safetymotoride.fr"
+set :repo_url, "git@bitbucket.org:fdago/lilybulles.git"
 
-set :hostname, "69.163.232.70"
-role :app, "#{hostname}"
-role :web, "#{hostname}"
-role :db, "#{hostname}", :primary => true
+set :tmp_dir, "/home/lilybulles/tmp/capistrano"
 
-set :scm, :git
-ssh_options[:forward_agent] = true
-set :repository, "git@github.com:franck/#{application}.git"
-#set :repository, "git@github.com:franck/expertnetwork.git"
-set :branch, "master"
-set :deploy_via, :remote_cache
+set :deploy_user, "tpesme"
+set :deploy_to, "/home/tpesme/safetymotoride.fr/#{fetch(:stage)}"
 
-#ssh_options[:port] = 32100
-set :user, "tpesme"
-set :admin_runner, "tpesme"
-
-set :use_sudo, false
-set :keep_releases, 2
-set :git_shallow_clone, 1
-
-#set :rake, "/opt/ruby-enterprise/bin/rake"
-
-task :production do
-  set :deploy_to, "#{deploy_in}/#{application}/app"
-  set :env, "production"
-  # Deploy to production site only from stable branch
-  set :branch, "stable"
-end
-
-task :staging do
-  set :deploy_to, "#{deploy_in}/#{application}/staging"
-  set :env, "staging"
-end
-
+set :linked_files, %w{public/wp-config.php public/.htaccess}
+set :linked_dirs, %w{public/content/uploads}
 
 namespace :deploy do
-  desc "Overwriting restart"
-  task :restart, :roles => :app, :except => { :no_release => true } do
-  end
-  
-  desc "Add uploads folder"
-  task :shared_uploads_folder, :roles => :web do
-    run "mkdir -p #{shared_path}/uploads"
-    run "chown -R #{user} #{shared_path}/uploads"
-    run "chmod 755 #{shared_path}/uploads"
-  end
-  
-  desc "Symlink uploads folder"
-  task :symlink_uploads, :roles => :web do
-    run "ln -nfs #{shared_path}/uploads #{current_path}/public/wp-content"
-  end
-  
-  desc "Symlink config files"
-  task :symlink_config_files, :roles => :web do
-    run "ln -nfs #{current_path}/config/wp-config-#{env}.php #{current_path}/public/wp-config.php"
-    run "ln -nfs #{current_path}/config/htaccess.txt #{current_path}/public/.htaccess"
-  end
-
-  
-  desc <<-DESC
-  A macro-task that updates the code and fixes the symlink.
-  DESC
-  task :default do
-    transaction do
-      update_code
-      symlink
+  desc "create WordPress files for symlinking"
+  task :create_wp_files do
+    on roles(:app) do
+      execute :touch, "#{shared_path}/public/wp-config.php"
+      execute :touch, "#{shared_path}/public/.htaccess"
     end
   end
 
-  task :update_code, :except => { :no_release => true } do
-    on_rollback { run "rm -rf #{release_path}; true" }
-    strategy.deploy!
-  end
-  
+  after 'check:make_linked_dirs', :create_wp_files
 end
 
-after "deploy:setup", "deploy:shared_uploads_folder"
-after "deploy:symlink", "deploy:symlink_uploads"
-after "deploy", "deploy:symlink_config_files"
-#after "deploy", "deploy:cleanup"
+namespace :wordpress do
+  namespace :config do
+    desc "upload config files"
+    task :upload do
+      on roles(:app) do
+        upload! "config/wp-config-#{fetch(:stage)}.php", "#{shared_path}/public/wp-config.php"
+        #upload! "config/.htaccess", "#{shared_path}/public/.htaccess"
+      end
+    end
+  end
+end
+before "deploy:check", "wordpress:config:upload"
