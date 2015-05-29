@@ -1,6 +1,6 @@
 # capistrano deploy
 set :application, "tpesme"
-set :repo_url, "git@github.com:franck/safetymotoride.git"
+set :repo_url, "git@github.com:franck/tpesme.git"
 
 set :tmp_dir, "/home/tpesme/tmp/capistrano"
 
@@ -33,4 +33,4 @@ namespace :wordpress do
     end
   end
 end
-before "deploy:check", "wordpress:config:upload"
+#before "deploy:check", "wordpress:config:upload"
