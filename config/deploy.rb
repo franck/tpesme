@@ -1,11 +1,11 @@
 # capistrano deploy
 set :application, "tpesme"
-set :repo_url, "git@bitbucket.org:fdago/lilybulles.git"
+set :repo_url, "git@github.com:franck/safetymotoride.git"
 
-set :tmp_dir, "/home/lilybulles/tmp/capistrano"
+set :tmp_dir, "/home/tpesme/tmp/capistrano"
 
 set :deploy_user, "tpesme"
-set :deploy_to, "/home/tpesme/safetymotoride.fr/#{fetch(:stage)}"
+set :deploy_to, "/home/tpesme/safetymotoride.com/#{fetch(:stage)}"
 
 set :linked_files, %w{public/wp-config.php public/.htaccess}
 set :linked_dirs, %w{public/content/uploads}

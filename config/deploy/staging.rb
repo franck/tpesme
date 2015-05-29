@@ -1,9 +1,9 @@
 set :stage, :staging
 
-role :app, %{safetymotoride.fr}
-role :web, %{safetymotoride.fr}
-role :db, %{safetymotoride.fr}
+role :app, %{safetymotoride.com}
+role :web, %{safetymotoride.com}
+role :db, %{safetymotoride.com}
 
-server 'safetymotoride.fr', user: "tpesme", roles: %{web}
+server 'safetymotoride.com', user: "tpesme", roles: %{web}
 
 set :branch, 'master'

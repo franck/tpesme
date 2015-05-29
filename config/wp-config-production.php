@@ -18,8 +18,8 @@
  */
 
 define('WP_CACHE', true); //Added by WP-Cache Manager
-define('WP_HOME','http://www.safetymotoride.fr');
-define('WP_SITEURL','http://www.safetymotoride.fr');
+define('WP_HOME','http://www.safetymotoride.com');
+define('WP_SITEURL','http://www.safetymotoride.com');
 
 // ** Réglages MySQL - Votre hébergeur doit vous fournir ces informations. ** //
 /** Le nom de la base de données de WordPress. */
@@ -32,7 +32,7 @@ define('DB_USER', 'tpesme');
 define('DB_PASSWORD', 'wEbmjWvB');
 
 /** Adresse de l'hébergement MySQL. */
-define('DB_HOST', 'mysql.safetymotoride.fr');
+define('DB_HOST', 'mysql.safetymotoride.com');
 
 /** Jeu de caractères à utiliser par la base de données lors de la création des tables. */
 define('DB_CHARSET', 'utf8');
