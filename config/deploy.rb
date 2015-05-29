@@ -33,4 +33,4 @@ namespace :wordpress do
     end
   end
 end
-#before "deploy:check", "wordpress:config:upload"
+before "deploy:check", "wordpress:config:upload"

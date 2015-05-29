@@ -23,7 +23,7 @@ define('WP_SITEURL','http://stage.safetymotoride.com');
 
 // ** Réglages MySQL - Votre hébergeur doit vous fournir ces informations. ** //
 /** Le nom de la base de données de WordPress. */
-define('DB_NAME', 'safetymotoridestage');
+define('DB_NAME', 'stagesafetymotoride2');
 
 /** Utilisateur de la base de données MySQL. */
 define('DB_USER', 'tpesme');
